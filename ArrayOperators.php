@@ -3,104 +3,105 @@
 
 class ArrayOperators
 {
-    public $arr = null;
+    private $arr = [];
 
     public function __construct($arr)
     {
-        $this->arr = $arr;
-    }
-
-    public function getArray()
-    {
-        $file = file_get_contents('numbers.txt');
-        $arr = explode(' ', $file);
-        return $arr;
+        $this->arr = explode(' ', $arr);
     }
 
     public function averageArray()
     {
-        $arr = $this->getArray();
-        $average = 0;
         $sum = 0;
-        for ($i = 0; $i < count($arr); $i++) {
-            $sum += $arr[$i];
+        for ($i = 0; $i < count($this->arr); $i++) {
+            $sum += $this->arr[$i];
         }
-        $average = $sum / count($arr);
-        return $average;
-
+        $average = $sum / count($this->arr);
+        return '*******************'.
+            "\n".'1. Gia tri trung binh cua mang la:' . $average .
+            "\n".'*******************';
     }
 
     public function countEvens()
     {
-        $arr = $this->getArray();
         $evens = 0;
-        for ($i = 0; $i < count($arr); $i++) {
-            if ($arr[$i] % 2 == 1) {
+        $odd = 0;
+        for ($i = 0; $i < count($this->arr); $i++) {
+            if ($this->arr[$i] % 2 == 0) {
                 $evens++;
+            } else {
+                $odd++;
             }
         }
-        return $evens;
+        return '2.1 So phan tu chan trong mang la: ' . $evens .
+            "\n" . '2.2 So phan tu le trong mang la: ' . $odd .
+            "\n" .'*******************';
+    }
+
+    public function sortArray()
+    {
+        for ($i = 0; $i < count($this->arr); $i++) {
+            for ($j = $i + 1; $j < count($this->arr); $j++) {
+                if ($this->arr[$i] <= $this->arr[$j]) {
+                    $x = $this->arr[$i];
+                    $this->arr[$i] = $this->arr[$j];
+                    $this->arr[$j] = $x;
+                }
+            }
+        }
+        return $this->arr;
+    }
+
+    public function decreaseArray()
+    {
+        return '3. Mang sau khi sap xep giam dan la:' . implode(' ', $this->sortArray()) .
+            "\n" . '*******************';
     }
 
     public function min2Array()
     {
-        $arr = $this->getArray();
-        for ($i = 0; $i < count($arr); $i++) {
-            $min = $arr[0];
-            if ($arr[$i] < $min) {
-                $min = $arr[$i];
-            }
-        }
-        unset($min);
-
-        for ($j = 0; $j < count($arr); $j++) {
-            $min2 = $arr[0];
-            if ($arr[$j] < $min2) {
-                $min2 = $arr[$j];
-            }
-            return $min2;
-        }
+        $arr = $this->sortArray();
+        return '4. Gia tri lon thu hai trong mang la:' . $arr[count($this->arr) - 2] .
+            "\n" . '*******************';
     }
 
     public function max2Array()
     {
-        $arr = $this->getArray();
-        for ($i = 0; $i < count($arr); $i++) {
-            for ($i = 0; $i < count($arr); $i++) {
-                $max = $arr[0];
-                if ($arr[$i] > $max) {
-                    $max = $arr[$i];
-                }
-            }
-            unset($max);
+        $arr = $this->sortArray();
+        return '5. Gia tri nho thu hai trong mang la:' . $arr[1] .
+            "\n" . '*******************';
+    }
 
-            for ($j = 0; $j < count($arr); $j++) {
-                $max2 = $arr[0];
-                if ($arr[$j] > $max2) {
-                    $max2 = $arr[$j];
-                }
-                return $max2;
+    public function bigSmallDiff()
+    {
+        $firstBig = $this->arr[0];
+        $firstSmall = $this->arr[0];
+        $big = abs(($this->arr[0] - $this->arr[1]));
+        $small = abs(($this->arr[0] - $this->arr[1]));
+        for ($i = 0; $i < count($this->arr) - 1; $i++) {
+            $j = $i + 1;
+            if (abs(($this->arr[$i] - $this->arr[$j])) > $big) {
+                $big = abs(($this->arr[$i] - $this->arr[$j]));
+                $firstBig = $this->arr[$i];
+            }
+            if (abs(($this->arr[$i] - $this->arr[$j])) < $small) {
+                $small = abs(($this->arr[$i] - $this->arr[$j]));
+                $firstSmall = $this->arr[$i];
             }
         }
+        return '6. Khoang cach lon nhat va nho nhat:' .$big ." ". $small ." ". $firstBig ." ". $firstSmall ;
     }
 }
 
-$arr = new ArrayOperators(file_get_contents('numbers.txt'));
+$array = new ArrayOperators(file_get_contents('numbers.txt'));
 
-
+$txt = $array->averageArray() .
+    "\n" . $array->countEvens() .
+    "\n" . $array->decreaseArray() .
+    "\n" . $array->min2Array() .
+    "\n" . $array->max2Array() .
+    "\n" . $array->bigSmallDiff();
 $myfile = fopen("results.txt", "w");
-$txt = '*******************
-1. Gia tri trung binh cua mang la:' . $arr->averageArray() . '
-*******************
-2. So phan tu le trong mang la:'.$arr->countEvens().'
-
-    
-4. Gia tri lon thu hai trong mang la:'.$arr->max2Array().'
-*******************
-5. Gia tri nho thu hai trong mang la:'.$arr->min2Array().'
-*******************
-';
-
 fwrite($myfile, $txt);
 
 

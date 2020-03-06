@@ -1,10 +1,9 @@
 *******************
 1. Gia tri trung binh cua mang la:4.8571428571429
 *******************
-2. So phan tu le trong mang la:2
-
-    
-    4. Gia tri lon thu hai trong mang la:4
+2.1 So phan tu chan trong mang la: 5
+2.2 So phan tu le trong mang la: 2
 *******************
-5. Gia tri nho thu hai trong mang la:4
+3. Mang sau khi sap xep giam dan la:9 8 6 4 4 2 1
 *******************
+6. Khoang cach lon nhat va nho nhat:7 1 2 1
