@@ -61,14 +61,14 @@ class ArrayOperators
     public function min2Array()
     {
         $arr = $this->sortArray();
-        return '4. Gia tri lon thu hai trong mang la:' . $arr[count($this->arr) - 2] .
+        return '4. Gia tri nho thu hai trong mang la:' . $arr[count($this->arr) - 2] .
             "\n" . '*******************';
     }
 
     public function max2Array()
     {
         $arr = $this->sortArray();
-        return '5. Gia tri nho thu hai trong mang la:' . $arr[1] .
+        return '5. Gia tri nho lon hai trong mang la:' . $arr[1] .
             "\n" . '*******************';
     }
 
@@ -95,12 +95,14 @@ class ArrayOperators
 
 $array = new ArrayOperators(file_get_contents('numbers.txt'));
 
+$array2 = new ArrayOperators(file_get_contents('numbers.txt'));
+
 $txt = $array->averageArray() .
     "\n" . $array->countEvens() .
     "\n" . $array->decreaseArray() .
     "\n" . $array->min2Array() .
     "\n" . $array->max2Array() .
-    "\n" . $array->bigSmallDiff();
+    "\n" . $array2->bigSmallDiff();
 $myfile = fopen("results.txt", "w");
 fwrite($myfile, $txt);
 

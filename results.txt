@@ -6,8 +6,8 @@
 *******************
 3. Mang sau khi sap xep giam dan la:9 8 6 4 4 2 1
 *******************
-4. Gia tri lon thu hai trong mang la:2
+4. Gia tri nho thu hai trong mang la:2
 *******************
-5. Gia tri nho thu hai trong mang la:8
+5. Gia tri nho lon hai trong mang la:8
 *******************
 6. Khoang cach lon nhat va nho nhat:7 1 2 1
